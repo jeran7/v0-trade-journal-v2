@@ -1,0 +1,352 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base colors - Light mode */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    /* Semantic colors - Light mode */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 142 76% 95%;
+    --success-emphasis: 142 76% 30%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 38 92% 95%;
+    --warning-emphasis: 38 92% 40%;
+
+    --insight: 142 76% 36%;
+    --insight-foreground: 0 0% 100%;
+    --insight-muted: 142 76% 95%;
+    --insight-emphasis: 142 76% 30%;
+
+    --danger: 0 84% 60%;
+    --danger-foreground: 0 0% 100%;
+    --danger-muted: 0 84% 95%;
+    --danger-emphasis: 0 84% 50%;
+
+    --advanced: 280 68% 42%;
+    --advanced-foreground: 0 0% 100%;
+    --advanced-muted: 280 68% 95%;
+    --advanced-emphasis: 280 68% 35%;
+
+    /* Glass morphism - Light mode */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    /* Layout variables */
+    --sidebar-width: 240px;
+
+    /* Animation variables */
+    --theme-transition-duration: 350ms;
+    --theme-transition-timing: ease;
+  }
+
+  .dark {
+    /* Base colors - Dark mode */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 217 91% 60%;
+
+    /* Semantic colors - Dark mode */
+    --success: 142 76% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 142 76% 15%;
+    --success-emphasis: 142 76% 55%;
+
+    --warning: 38 92% 60%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 38 92% 15%;
+    --warning-emphasis: 38 92% 70%;
+
+    --insight: 142 76% 45%;
+    --insight-foreground: 0 0% 100%;
+    --insight-muted: 142 76% 15%;
+    --insight-emphasis: 142 76% 55%;
+
+    --danger: 0 84% 65%;
+    --danger-foreground: 0 0% 100%;
+    --danger-muted: 0 84% 15%;
+    --danger-emphasis: 0 84% 75%;
+
+    --advanced: 280 68% 55%;
+    --advanced-foreground: 0 0% 100%;
+    --advanced-muted: 280 68% 15%;
+    --advanced-emphasis: 280 68% 65%;
+
+    /* Glass morphism - Dark mode */
+    --glass-bg: rgba(15, 15, 15, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Add theme transition to all elements */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-timing);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Add system font stack that mimics SF Pro */
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica,
+      Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-opacity-20 backdrop-blur-lg backdrop-filter border border-opacity-20 shadow-lg;
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  /* Semantic color utility classes */
+  .success-text {
+    @apply text-[hsl(var(--success))];
+  }
+
+  .warning-text {
+    @apply text-[hsl(var(--warning))];
+  }
+
+  .insight-text {
+    @apply text-[hsl(var(--insight))];
+  }
+
+  .danger-text {
+    @apply text-[hsl(var(--danger))];
+  }
+
+  .advanced-text {
+    @apply text-[hsl(var(--advanced))];
+  }
+
+  /* Legacy classes for backward compatibility */
+  .profit-text {
+    @apply text-[hsl(var(--success))];
+  }
+
+  .loss-text {
+    @apply text-[hsl(var(--danger))];
+  }
+
+  /* Gradient backgrounds - using direct CSS instead of @apply */
+  .gradient-bg {
+    background: linear-gradient(to bottom right, #0f172a, #1e293b);
+  }
+
+  .dark .gradient-bg {
+    background: linear-gradient(to bottom right, #0f172a, #1e293b);
+  }
+
+  .light .gradient-bg {
+    background: linear-gradient(to bottom right, #f8fafc, #e2e8f0);
+  }
+
+  .animate-in {
+    animation: animateIn 0.3s ease forwards;
+  }
+
+  .animate-out {
+    animation: animateOut 0.3s ease forwards;
+  }
+
+  @keyframes animateIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes animateOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  /* Animation for dropdown menus */
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .scale-in-animation {
+    animation: scaleIn 0.2s ease-out forwards;
+    transform-origin: top right;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  /* Semantic color backgrounds with glass effect */
+  .glass-success {
+    background: linear-gradient(135deg, hsla(var(--success), 0.1), hsla(var(--success), 0.05));
+    border-color: hsla(var(--success), 0.2);
+  }
+
+  .glass-warning {
+    background: linear-gradient(135deg, hsla(var(--warning), 0.1), hsla(var(--warning), 0.05));
+    border-color: hsla(var(--warning), 0.2);
+  }
+
+  .glass-insight {
+    background: linear-gradient(135deg, hsla(var(--insight), 0.1), hsla(var(--insight), 0.05));
+    border-color: hsla(var(--insight), 0.2);
+  }
+
+  .glass-danger {
+    background: linear-gradient(135deg, hsla(var(--danger), 0.1), hsla(var(--danger), 0.05));
+    border-color: hsla(var(--danger), 0.2);
+  }
+
+  .glass-advanced {
+    background: linear-gradient(135deg, hsla(var(--advanced), 0.1), hsla(var(--advanced), 0.05));
+    border-color: hsla(var(--advanced), 0.2);
+  }
+
+  /* Progress indicators with semantic colors */
+  .progress-bar {
+    @apply h-2 rounded-full overflow-hidden bg-muted relative;
+  }
+
+  .progress-bar-success {
+    @apply absolute inset-y-0 left-0 bg-success transition-all duration-300;
+  }
+
+  .progress-bar-warning {
+    @apply absolute inset-y-0 left-0 bg-warning transition-all duration-300;
+  }
+
+  .progress-bar-danger {
+    @apply absolute inset-y-0 left-0 bg-danger transition-all duration-300;
+  }
+
+  .progress-bar-insight {
+    @apply absolute inset-y-0 left-0 bg-insight transition-all duration-300;
+  }
+
+  .progress-bar-advanced {
+    @apply absolute inset-y-0 left-0 bg-advanced transition-all duration-300;
+  }
+
+  /* Semantic borders */
+  .border-l-semantic-success {
+    border-left: 3px solid hsl(var(--success));
+  }
+
+  .border-l-semantic-warning {
+    border-left: 3px solid hsl(var(--warning));
+  }
+
+  .border-l-semantic-insight {
+    border-left: 3px solid hsl(var(--insight));
+  }
+
+  .border-l-semantic-danger {
+    border-left: 3px solid hsl(var(--danger));
+  }
+
+  .border-l-semantic-advanced {
+    border-left: 3px solid hsl(var(--advanced));
+  }
+
+  /* Layout utility classes */
+  .content-wrapper {
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    transition: margin-left 0.3s ease, width 0.3s ease;
+  }
+}
